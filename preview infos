@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay 186</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 40px;
+        color: #2e2e2e;
+    }
+
+    .wrapper {
+        width: 95%;
+        max-width: 850px;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(18px);
+        border-radius: 28px;
+        padding: 35px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    #logo {
+        display: block;
+        margin: 0 auto 20px auto;
+        width: 120px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 30px;
+        font-weight: 700;
+        color: #1a1a1a;
+    }
+
+    .section-title {
+        margin-top: 30px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #198754;
+        border-left: 5px solid #198754;
+        padding-left: 12px;
+        margin-bottom: 15px;
+    }
+
+    .info-row {
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(0,0,0,0.05);
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+        transition: 0.25s ease;
+    }
+
+    .info-row:hover {
+        background: rgba(255, 255, 255, 0.85);
+        transform: translateY(-1px);
+    }
+
+    .label {
+        font-weight: 600;
+        color: #444;
+    }
+
+    #logoutBtn {
+        width: 100%;
+        margin-top: 30px;
+        padding: 14px;
+        background: linear-gradient(135deg, #1f8e59, #198754);
+        border: none;
+        border-radius: 14px;
+        color: white;
+        font-size: 17px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.2s;
+        box-shadow: 0 4px 15px rgba(25,135,84,0.35);
+    }
+
+    #logoutBtn:hover {
+        background: linear-gradient(135deg, #176f45, #157347);
+    }
+</style>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="card">
+
+            <img id="logo" src="assets/images/brgy186logo.png" alt="Barangay 186 Logo">
+
+            <h2>User Profile Information</h2>
+
+            <div id="userInfo">Loading your data...</div>
+
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+
+    <script src="assets/js/firebase-config.js"></script>
+
+<script>
+const userInfoDiv = document.getElementById("userInfo");
+const sessionUID = sessionStorage.getItem("uid");
+
+if (!sessionUID) {
+    alert("No session found. Please login again.");
+    location.href = "index.html";
+}
+
+firebase.auth().onAuthStateChanged(async (user) => {
+    if (!user) {
+        sessionStorage.clear();
+        location.href = "index.html";
+        return;
+    }
+    loadUserData(sessionUID);
+});
+
+
+// =============================
+//        GROUPING SETUP
+// =============================
+const fieldGroups = {
+    "Personal Information": {
+        "First Name": "firstName",
+        "Middle Name": "middleName",
+        "Last Name": "lastName",
+        "Suffix": "suffix",
+        "Date of Birth": "dob",
+        "Age": "age",
+        "Sex": "sex",
+        "Civil Status": "civilStatus",
+        "Nationality": "nationality",
+        "Religion": "religion",
+        "Place of Birth": "placeOfBirth"
+    },
+
+    "Contact Information": {
+        "Phone Number": "phoneNumber",
+        "Alt. Phone": "altPhone",
+        "Email": "email",
+        "Account Email": "accountEmail"
+    },
+
+    "Address Information": {
+        "House No.": "houseNo",
+        "Street": "street",
+        "Subdivision": "subdivision",
+        "Barangay": "barangay",
+        "Zone": "zone",
+        "City": "city",
+        "Province": "province",
+        "Zip Code": "zipCode"
+    },
+
+    "Residence Information": {
+        "Housing Type": "housingType",
+        "House Ownership": "houseOwnership",
+        "Years of Residency": "yearsOfResidency",
+        "Residency Count": "residencyCount"
+    },
+
+    "Employment & Education": {
+        "Employment Status": "employmentStatus",
+        "Occupation": "occupation",
+        "Employer": "employer",
+        "Student Type": "studentType",
+        "Income Range": "incomeRange",
+        "Work Address": "workAddress"
+    },
+
+    "Government IDs": {
+        "National ID": "nationalId",
+        "SSS": "sss",
+        "TIN": "tin",
+        "PhilHealth": "philhealth",
+        "PAG-IBIG": "pagibig",
+        "Driver's License": "driversLicense",
+        "Passport": "passport",
+        "Voter's ID": "votersId",
+        "Precinct Number": "precinctNumber"
+    },
+
+    "Assistance Programs": {
+        "4Ps": "fourPs",
+        "4Ps ID": "fourPsId",
+        "Indigent": "indigent",
+        "PWD": "pwd",
+        "PWD ID": "pwdId",
+        "Senior Citizen": "seniorCitizen",
+        "Senior ID": "seniorId",
+        "Solo Parent": "soloParent",
+        "Solo Parent ID": "soloParentId",
+        "OFW Family": "ofwFamily"
+    },
+
+    "Medical Information": {
+        "Medical Conditions": "medicalConditions",
+        "Maintenance Medicine": "maintenanceMedicine",
+        "Allergies": "allergies",
+        "Vaccination Status": "vaccinationStatus",
+        "Disability Type": "disabilityType"
+    },
+
+    "Emergency Contact": {
+        "Emergency Name": "emergencyName",
+        "Relation": "emergencyRelation",
+        "Contact Number": "emergencyNumber"
+    },
+
+    "Household Information": {
+        "Household Head": "householdHead",
+        "Household Head Name": "householdHeadName",
+        "Relation to Head": "householdRelation",
+        "Household Members": "householdMembers",
+        "Household Income": "householdIncome"
+    },
+
+    "Barangay Records": {
+        "Blotter Count": "blotterCount",
+        "Clearance Count": "clearanceCount",
+        "Indigency Count": "indigencyCount"
+    }
+};
+
+
+
+// =============================
+//      FETCH USER DATA
+// =============================
+async function loadUserData(uid) {
+    try {
+        const docRef = firestore.collection("profiles").doc(uid);
+        const docSnap = await docRef.get();
+
+        if (!docSnap.exists) {
+            userInfoDiv.innerHTML = "<p>No profile document found.</p>";
+            return;
+        }
+
+        const data = docSnap.data();
+        let html = "";
+
+        for (const groupName in fieldGroups) {
+            html += `<div class="section-title">${groupName}</div>`;
+
+            Object.entries(fieldGroups[groupName]).forEach(([label, key]) => {
+                const value = data[key] || "<i>Not provided</i>";
+
+                html += `
+                    <div class="info-row">
+                        <span class="label">${label}</span>
+                        <span>${value}</span>
+                    </div>
+                `;
+            });
+        }
+
+        userInfoDiv.innerHTML = html;
+
+    } catch (error) {
+        console.error("Error loading profile:", error);
+        userInfoDiv.innerHTML = "<p>Error loading data.</p>";
+    }
+}
+
+
+// =============================
+//            LOGOUT
+// =============================
+document.getElementById("logoutBtn").onclick = () => {
+    sessionStorage.clear();
+    firebase.auth().signOut();
+    location.href = "index.html";
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!-- index.html (log in) -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Barangay 186</title>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/modal.css">
+
+    <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- GLOBAL MODAL  -->
+<div id="globalModal" class="modal-overlay">
+    <div class="modal-box">
+        <h2 id="modalTitle"></h2>
+        <p id="modalMessage"></p>
+        <button id="modalCloseBtn">OK</button>
+        <button id="modalConfirmBtn" style="display: none;">Confirm</button>
+        <button id="modalCancelBtn" style="display: none;">Cancel</button>
+    </div>
+</div>
+
+    <div class="container">
+
+        <!-- LEFT SIDE -->
+        <div class="left">
+            <img src="assets/images/brgy186logo.png" width="120" alt="Barangay 186 Logo">
+
+            <h2>Sign in</h2>
+
+            <form id="loginForm">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+
+                <button type="submit">Sign In</button>
+
+                <button type="button" id="googleSignIn" class="google-btn">
+                    Sign in with Google
+                </button>
+
+                <p class="signup-text">
+                    No account? <a href="signup.html">Sign up</a>
+                </p>
+            </form>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="right">
+            <h1>Barangay 186<br>Management System</h1>
+        </div>
+
+    </div>
+
+    <!-- Firebase v9 compat -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+
+
+    <script src="assets/js/page-transition.js"></script>
+
+    <!-- Firebase config -->
+    <script src="assets/js/firebase-config.js"></script>
+
+    <!-- Modal & Login Logic -->
+    <script src="assets/js/modal.js"></script>
+    <script src="assets/js/index.js"></script>
+    
+</body>
+
+</html>

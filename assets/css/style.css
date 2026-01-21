@@ -1,0 +1,259 @@
+/* style.css */
+
+
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/* MAIN LAYOUT */
+body {
+  height: 100vh;
+  background: #f5f5f5;
+}
+
+
+
+.container {
+  display: flex;
+  height: 100%;
+}
+
+/* LEFT SIDE */
+.left {
+  width: 50%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.left img {
+  margin-bottom: 20px;
+}
+
+.left h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+/* FORM */
+form {
+  width: 100%;
+  max-width: 380px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 18px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  background: #fd6f37;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* GOOGLE BUTTON */
+.google-btn {
+  background: white;
+  color: black;
+  border: 1px solid #ddd;
+  font-weight: 600;
+}
+
+.signup-text {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* RIGHT SIDE */
+/* RIGHT SIDE — Modern Barangay Design */
+.right {
+  width: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff7b3d, #ff915a);
+  padding: 50px;
+  color: white;
+  overflow: hidden;
+}
+
+/* Semi-transparent overlay */
+.right .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Main content */
+.right .content {
+  position: relative;
+  text-align: left;
+  max-width: 450px;
+  z-index: 2;
+}
+
+/* Watermark Barangay Logo */
+.right .watermark {
+  position: absolute;
+  right: -30px;
+  bottom: -30px;
+  width: 250px;
+  opacity: 0.15;
+  user-select: none;
+  z-index: 1;
+}
+
+.right h1 {
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.right h2 {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.right p {
+  font-size: 16px;
+  margin-bottom: 25px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Features List */
+.features {
+  list-style: none;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.features li {
+  opacity: 0.95;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .right {
+    display: none; /* hide right section on phones */
+  }
+
+  .left {
+    width: 100%;
+    padding: 30px;
+  }
+}
+#loading {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      backdrop-filter: blur(3px);
+      background: rgba(0,0,0,0.3);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #loading .spinner {
+      width: 60px;
+      height: 60px;
+      border: 5px solid #fff;
+      border-top-color: #198754;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Modal */
+    #modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      backdrop-filter: blur(3px);
+      background: rgba(0,0,0,0.4);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #modal .box {
+      background: white;
+      padding: 25px;
+      width: 90%;
+      max-width: 360px;
+      border-radius: 12px;
+      text-align: center;
+      animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      color: white;
+      background: #198754;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+
+    /* Slide-out transition */
+body {
+    transform: translateX(0);
+    transition: transform 1s ease-in-out;
+}
+
+body.slide-left {
+    transform: translateX(-100%);
+}
+
+body.slide-right {
+    transform: translateX(100%);
+}

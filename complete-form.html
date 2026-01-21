@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Complete Profile — Wizard</title>
+
+  <link rel="stylesheet" href="assets/css/complete-profile.css">
+  <link rel="stylesheet" href="assets/css/modal.css">
+
+  <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<!-- GLOBAL MODAL  -->
+<div id="globalModal" class="modal-overlay">
+    <div class="modal-box">
+        <h2 id="modalTitle"></h2>
+        <p id="modalMessage"></p>
+        <button id="modalCloseBtn">OK</button>
+        <button id="modalConfirmBtn" style="display: none;">Confirm</button>
+        <button id="modalCancelBtn" style="display: none;">Cancel</button>
+    </div>
+</div>
+
+<main class="card">
+  <header class="card-header">
+    <h1>Complete Resident Profile</h1>
+    <div id="progressWrap">
+      <div id="progressBar"><div id="progressFill"></div></div>
+      <div id="progressText">Step <span id="stepIndex">1</span> of <span id="stepTotal">6</span></div>
+    </div>
+  </header>
+
+  <form id="wizardForm" autocomplete="off" novalidate>
+
+    <!-- STEP 1 - Personal -->
+    <section class="step" data-step="1">
+      <h2>Personal Information</h2>
+      <div class="grid">
+        <label>
+          First Name *
+          <input id="firstName" name="firstName" type="text" required>
+        </label>
+        <label>
+          Middle Name
+          <input id="middleName" name="middleName" type="text">
+        </label>
+        <label>
+          Last Name *
+          <input id="lastName" name="lastName" type="text" required>
+        </label>
+        <label>
+          Suffix
+          <input id="suffix" name="suffix" type="text" placeholder="Jr / Sr / II">
+        </label>
+
+        <label>
+          Birthdate *
+          <input id="dob" name="dob" type="date" required>
+        </label>
+        <label>
+          Age
+          <input id="age" name="age" type="number" readonly>
+        </label>
+        <label>
+          Sex *
+          <select id="sex" name="sex" required>
+            <option value="">Choose</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>
+          Civil Status *
+          <select id="civilStatus" name="civilStatus" required>
+            <option value="">Choose</option>
+            <option>Single</option>
+            <option>Married</option>
+            <option>Widowed</option>
+            <option>Separated</option>
+            <option>Divorced</option>
+          </select>
+        </label>
+        <label class="full">
+          Nationality
+          <input id="nationality" name="nationality" type="text" value="Filipino" required>
+        </label>
+        <label>
+          Place of Birth
+          <input id="placeOfBirth" name="placeOfBirth" type="text">
+        </label>
+
+        <label class="full">
+          Religion
+          <input id="religion" name="religion" type="text">
+        </label>
+      </div>
+    </section>
+
+    <!-- STEP 2 - Address --> 
+<section class="step" data-step="2">
+  <h2>Address Information</h2>
+
+  <div class="grid">
+
+    <label>
+      House No.
+      <input id="houseNo" name="houseNo" type="text">
+    </label>
+
+    <label>
+      Street *
+      <input id="street" name="street" type="text" required>
+    </label>
+
+    <label>
+      Purok / Zone *
+      <input id="zone" name="zone" type="text" required>
+    </label>
+
+    <label class="full">
+      Complete Address *
+      <input id="completeAddress" name="completeAddress" type="text" placeholder="Example: Blk 12 Lot 4, ABC Compound" required>
+    </label>
+
+    <label>
+      Barangay
+      <input id="barangay" name="barangay" type="text" value="Barangay 186" readonly>
+    </label>
+
+    <label>
+      Province
+      <input id="province" name="province" type="text" value="Metro Manila" readonly>
+    </label>
+
+    <!-- Pick a year, auto-calc years lived -->
+    <label>
+      Year Started Residency *
+      <select id="yearStarted" name="yearStarted" required></select>
+    </label>
+
+    <label>
+      Years of Residency
+      <input id="yearsOfResidency" name="yearsOfResidency" type="number" readonly>
+    </label>
+
+  </div>
+</section>
+
+
+    <!-- STEP 3 - Contact & ID -->
+    <section class="step" data-step="3">
+      <h2>Contact & Identification</h2>
+      <div class="grid">
+        <label>
+          Phone Number *
+          <input id="phoneNumber" name="phoneNumber" inputmode="numeric" type="text" maxlength="11" placeholder="09xxxxxxxxx" required>
+          <small class="hint" id="phoneHint"></small>
+        </label>
+
+        <label>
+          Alternate Contact
+          <input id="altPhone" name="altPhone" inputmode="numeric" type="text" maxlength="11" placeholder="09xxxxxxxxx">
+        </label>
+
+        <label>
+          Email (login)
+          <input id="email" name="email" type="email" required>
+        </label>
+
+        <label>
+          Emergency Contact Person
+          <input id="emergencyName" name="emergencyName" type="text">
+        </label>
+
+        <label>
+          Emergency Contact Relationship
+          <input id="emergencyRelation" name="emergencyRelation" type="text">
+        </label>
+
+        <label>
+          Emergency Contact Number
+          <input id="emergencyNumber" name="emergencyNumber" inputmode="numeric" type="text" maxlength="11" placeholder="09xxxxxxxxx">
+        </label>
+
+        <hr class="full-sep full">
+
+        <label>
+          TIN
+          <input id="tin" name="tin" type="text">
+        </label>
+
+        <label>
+          PhilHealth
+          <input id="philhealth" name="philhealth" type="text" maxlength="12" placeholder="12 digits">
+        </label>
+
+        <label>
+          SSS
+          <input id="sss" name="sss" type="text">
+        </label>
+
+        <label>
+          Pag-IBIG
+          <input id="pagibig" name="pagibig" type="text">
+        </label>
+
+        <label>
+          Voter's ID
+          <input id="votersId" name="votersId" type="text">
+        </label>
+
+        <label>
+          Precinct Number
+          <input id="precinctNumber" name="precinctNumber" type="text">
+        </label>
+
+        <label>
+          PhilSys (National ID)
+          <input id="nationalId" name="nationalId" type="text">
+        </label>
+
+        <label>
+          Driver's License Number
+          <input id="driversLicense" name="driversLicense" type="text">
+        </label>
+
+        <label>
+          Passport Number
+          <input id="passport" name="passport" type="text">
+        </label>
+      </div>
+    </section>
+
+    <!-- STEP 4 - Employment & Household -->
+    <section class="step" data-step="4">
+      <h2>Employment & Household</h2>
+      <div class="grid">
+        <label>
+          Employment Status
+          <select id="employmentStatus" name="employmentStatus">
+            <option value="">Select</option>
+            <option>Employed</option>
+            <option>Unemployed</option>
+            <option>Self-Employed</option>
+            <option>Student</option>
+            <option>Retired</option>
+          </select>
+        </label>
+
+        <label>
+          Occupation
+          <input id="occupation" name="occupation" type="text">
+        </label>
+
+        <label>
+          Employer / Company
+          <input id="employer" name="employer" type="text">
+        </label>
+
+        <label>
+          Work Address
+          <input id="workAddress" name="workAddress" type="text">
+        </label>
+
+        <label>
+          Monthly Income Range
+          <input id="incomeRange" name="incomeRange" type="text" placeholder="e.g. ₱10,000 - ₱20,000">
+        </label>
+
+        <hr class="full-sep full">
+
+        <label>
+          Household Head?
+          <select id="householdHead" name="householdHead">
+            <option value="">Select</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </label>
+
+        <label>
+          Name of Household Head
+          <input id="householdHeadName" name="householdHeadName" type="text">
+        </label>
+
+        <label>
+          Relationship to Household Head
+          <input id="householdRelation" name="householdRelation" type="text">
+        </label>
+
+        <label>
+          Number of Household Members
+          <input id="householdMembers" name="householdMembers" type="number" min="0">
+        </label>
+
+        <label>
+          Household Income Bracket
+          <input id="householdIncome" name="householdIncome" type="text">
+        </label>
+
+        <label>
+          House Ownership
+          <select id="houseOwnership" name="houseOwnership">
+            <option value="">Select</option>
+            <option>Owned</option>
+            <option>Rented</option>
+            <option>Living with Relatives</option>
+            <option>Government Housing</option>
+          </select>
+        </label>
+
+        <label>
+          Housing Type
+          <input id="housingType" name="housingType" type="text" placeholder="Concrete / Mixed / Light">
+        </label>
+      </div>
+    </section>
+
+    <!-- STEP 5 - Social & Health -->
+    <section class="step" data-step="5">
+      <h2>Social & Health Information</h2>
+      <div class="grid">
+        <label>
+          4Ps Beneficiary
+          <select id="fourPs" name="fourPs">
+            <option value="">Select</option>
+            <option>No</option>
+            <option>Yes</option>
+          </select>
+        </label>
+        <label>
+          4Ps ID Number
+          <input id="fourPsId" name="fourPsId" type="text">
+        </label>
+
+        <label>
+          Solo Parent
+          <select id="soloParent" name="soloParent">
+            <option value="">Select</option>
+            <option>No</option>
+            <option>Yes</option>
+          </select>
+        </label>
+        <label>
+          Solo Parent ID
+          <input id="soloParentId" name="soloParentId" type="text">
+        </label>
+
+        <label>
+          PWD
+          <select id="pwd" name="pwd">
+            <option value="">Select</option>
+            <option>No</option>
+            <option>Yes</option>
+          </select>
+        </label>
+        <label>
+          PWD ID
+          <input id="pwdId" name="pwdId" type="text">
+        </label>
+
+        <label>
+          Senior Citizen
+          <select id="seniorCitizen" name="seniorCitizen">
+            <option value="">Select</option>
+            <option>No</option>
+            <option>Yes</option>
+          </select>
+        </label>
+        <label>
+          Senior ID
+          <input id="seniorId" name="seniorId" type="text">
+        </label>
+
+        <label>
+          Indigent
+          <select id="indigent" name="indigent">
+            <option value="">Select</option>
+            <option>No</option>
+            <option>Yes</option>
+          </select>
+        </label>
+
+        <label>
+          OFW Family Member (Name & Relation)
+          <input id="ofwFamily" name="ofwFamily" type="text">
+        </label>
+
+        <label>
+          Student Type
+          <select id="studentType" name="studentType">
+            <option value="">Select</option>
+            <option>Elementary</option>
+            <option>High School</option>
+            <option>College</option>
+            <option>ALS</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <!-- STEP 6 - Health & Documents -->
+    <section class="step" data-step="6">
+      <h2>Health & Documents</h2>
+      <div class="grid">
+        <label>
+          Disability Type
+          <input id="disabilityType" name="disabilityType" type="text">
+        </label>
+
+        <label>
+          Medical Conditions
+          <input id="medicalConditions" name="medicalConditions" type="text">
+        </label>
+
+        <label>
+          Allergies
+          <input id="allergies" name="allergies" type="text">
+        </label>
+
+        <label>
+          Maintenance Medicine
+          <input id="maintenanceMedicine" name="maintenanceMedicine" type="text">
+        </label>
+
+        <label>
+          Vaccination Status
+          <select id="vaccinationStatus" name="vaccinationStatus">
+            <option value="">Select</option>
+            <option>Not Vaccinated</option>
+            <option>1st Dose Only</option>
+            <option>Fully Vaccinated</option>
+            <option>With Booster</option>
+          </select>
+        </label>
+
+        <label class="full">
+          Proof of ID (upload) — optional
+          <input id="proofID" name="proofID" type="file" accept="image/*,application/pdf">
+        </label>
+
+        <label class="full">
+          Additional Notes
+          <textarea id="notes" name="notes" rows="4" placeholder="Anything else you want to add..."></textarea>
+        </label>
+
+      </div>
+
+      <!-- READ-ONLY: Account & Document Stats -->
+      <h3 class="full">Account & History (readonly)</h3>
+      <div class="readonly-box full">
+        <div class="grid">
+          <label>
+            Email (login)
+            <input id="accountEmail" readonly>
+          </label>
+          <label>
+            Temp Password Active
+            <input id="tempPassStatus" readonly>
+          </label>
+          <label>
+            Date Account Created
+            <input id="acctCreated" readonly>
+          </label>
+          <label>
+            Last Login
+            <input id="acctLastLogin" readonly>
+          </label>
+          <label>
+            Clearances Issued
+            <input id="clearanceCount" readonly>
+          </label>
+          <label>
+            Residency Certs Issued
+            <input id="residencyCount" readonly>
+          </label>
+          <label>
+            Indigency Certs Issued
+            <input id="indigencyCount" readonly>
+          </label>
+          <label>
+            Blotter Records
+            <input id="blotterCount" readonly>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="wizard-nav">
+      <button type="button" id="prevBtn" class="muted">Previous</button>
+      <div class="spacer"></div>
+      <button type="button" id="nextBtn">Next</button>
+    </nav>
+
+  </form>
+</main>
+
+<!-- Firebase (compat) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<!-- your config must initialize firebase -->
+<script src="assets/js/modal.js"></script> 
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/profile.js"></script>
+
+</body>
+</html>

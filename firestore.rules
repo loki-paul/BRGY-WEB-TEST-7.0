@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read access to document_purposes collection for all authenticated users
+    match /document_purposes/{document} {
+      allow read: if request.auth != null;
+    }
+
+    // Allow authenticated users to read and write their own requests
+    match /requests/{requestId} {
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
+    }
+
+    // Allow admin users to read and write all requests (authenticated)
+    match /requests/{requestId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Allow read and write access to profiles collection for admin panel (temporary - no auth required)
+    match /profiles/{userId} {
+      allow read, write: if true;
+    }
+
+    // Allow read and write access to requests collection for admin panel (temporary - no auth required)
+    match /requests/{requestId} {
+      allow read, write: if true;
+    }
+
+    // Allow read and write access to archived_profiles collection for admin panel (temporary - no auth required)
+    match /archived_profiles/{userId} {
+      allow read, write: if true;
+    }
+
+    // Allow authenticated users to read and write their own user profile
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Default deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

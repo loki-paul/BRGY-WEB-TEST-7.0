@@ -1,0 +1,160 @@
+/* =====================================================
+   DASHBOARD-GRAPHS.CSS — Doughnut Charts for Dashboard Stats
+   ===================================================== */
+
+/* Doughnut Chart Container */
+.doughnut-chart {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* SVG Doughnut Chart Styles */
+.doughnut-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* Start from top */
+}
+
+/* Doughnut Path Styles */
+.doughnut-path {
+  stroke-linecap: round;
+  stroke-width: 12;
+  fill: none;
+  transition: stroke-dasharray 1s ease-in-out, stroke 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Specific Colors for Each Stat */
+.total-requests-path {
+  stroke: #1e477a; /* Primary blue */
+}
+
+.pending-requests-path {
+  stroke: #ffc107; /* Yellow for pending */
+}
+
+.completed-requests-path {
+  stroke: #28a745; /* Green for completed */
+}
+
+.total-users-path {
+  stroke: #dc3545; /* Red for users */
+}
+
+/* Background Circle for Doughnut */
+.doughnut-bg {
+  stroke: #e1e5eb;
+  stroke-width: 12;
+  fill: none;
+}
+
+/* Center Text in Doughnut */
+.doughnut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  z-index: 1;
+}
+
+.doughnut-center .label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: #6c7a89;
+  margin-top: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Hover Effects */
+.doughnut-chart:hover .doughnut-path {
+  stroke-width: 14;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.doughnut-chart:hover .doughnut-center {
+  font-size: 22px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  .doughnut-chart {
+    width: 120px;
+    height: 120px;
+  }
+
+  .doughnut-path,
+  .doughnut-bg {
+    stroke-width: 10;
+  }
+
+  .doughnut-center {
+    font-size: 18px;
+  }
+
+  .doughnut-center .label {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .doughnut-chart {
+    width: 100px;
+    height: 100px;
+  }
+
+  .doughnut-path,
+  .doughnut-bg {
+    stroke-width: 8;
+  }
+
+  .doughnut-center {
+    font-size: 16px;
+  }
+
+  .doughnut-center .label {
+    font-size: 9px;
+  }
+}
+
+/* Animation for Chart Loading */
+@keyframes drawChart {
+  from {
+    stroke-dasharray: 0 100;
+  }
+  to {
+    stroke-dasharray: var(--dasharray, 100 0);
+  }
+}
+
+.doughnut-path {
+  animation: drawChart 1.5s ease-in-out forwards;
+}
+
+/* Pulse Animation for Loading */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.doughnut-chart.loading .doughnut-path {
+  animation: pulse 1s infinite;
+}

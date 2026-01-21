@@ -1,0 +1,95 @@
+/* =========================================
+   USER DETAILS PANEL
+   ========================================= */
+.users-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.users-table-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-details-panel {
+  width: 400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e1e5eb;
+  overflow: hidden;
+  position: sticky;
+  top: 20px;
+}
+
+.user-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e1e5eb;
+}
+
+.user-details-header h2 {
+  margin: 0;
+  color: #1e477a;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.close-details-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #6c7a89;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-details-btn:hover {
+  background: #e9ecef;
+  color: #2c3e50;
+}
+
+.user-details-content {
+  padding: 20px;
+  max-height: 600px;
+  overflow-y: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #2c3e50;
+  white-space: pre-wrap;
+}
+
+/* =====================================================
+   RESPONSIVE — TABLET (max 900px)
+   ===================================================== */
+@media (max-width: 900px) {
+  .user-details-panel {
+    width: 350px;
+  }
+}
+
+/* =====================================================
+   RESPONSIVE — MOBILE (max 600px)
+   ===================================================== */
+@media (max-width: 600px) {
+  .users-container {
+    flex-direction: column;
+  }
+
+  .user-details-panel {
+    width: 100%;
+    position: static;
+  }
+}

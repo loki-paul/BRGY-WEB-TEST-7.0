@@ -1,0 +1,213 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Barangay 186</title>
+
+  <link rel="stylesheet" href="assets/css/home.css" />
+  <link rel="stylesheet" href="assets/css/modal.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- =======================
+     GLOBAL LOADING OVERLAY
+     ======================= -->
+  <div id="pageLoader">
+    <span class="loader"></span>
+  </div>
+
+  <!-- GLOBAL MODAL -->
+  <div id="globalModal" class="modal-overlay">
+    <div class="modal-box">
+      <h2 id="modalTitle"></h2>
+      <p id="modalMessage"></p>
+      <div class="modal-actions">
+        <button id="modalConfirmBtn" class="action-btn cancel-btn" style="display: none;">Yes</button>
+        <button id="modalCancelBtn" class="action-btn" style="display: none;">No</button>
+        <button id="modalCloseBtn">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- REQUEST DETAILS MODAL -->
+  <div id="requestModal" class="modal-overlay" role="dialog" aria-labelledby="requestModalTitle" aria-modal="true">
+    <div class="modal-box request-modal-box">
+      <div class="modal-header">
+        <h2 id="requestModalTitle">Request Details</h2>
+        <button id="requestModalCloseBtn" class="modal-close-btn" aria-label="Close request details modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="details-section">
+          <div class="detail-item">
+            <span class="detail-label">Request ID:</span>
+            <span id="modalRequestId" class="detail-value"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Status:</span>
+            <span id="modalRequestStatus" class="detail-value"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Submitted:</span>
+            <span id="modalRequestDate" class="detail-value"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Documents:</span>
+            <span id="modalRequestDocuments" class="detail-value"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Purposes:</span>
+            <span id="modalRequestPurposes" class="detail-value"></span>
+          </div>
+          <div id="modalBusinessInfo" class="detail-item" style="display: none;">
+            <span class="detail-label">Business Info:</span>
+            <span id="modalRequestBusiness" class="detail-value"></span>
+          </div>
+          <div id="modalNotes" class="detail-item" style="display: none;">
+            <span class="detail-label">Notes:</span>
+            <span id="modalRequestNotes" class="detail-value"></span>
+          </div>
+        </div>
+        <div id="modalActions" class="modal-actions" style="display: none;">
+          <button id="cancelRequestBtn" class="action-btn cancel-btn">Cancel Request</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="header">
+
+    <div class="header-left">
+      <img src="assets/images/brgy186logo.png" class="header-logo" alt="Barangay 186 Logo">
+      <h2 class="logo-text">Barangay 186</h2>
+    </div>
+
+    <div class="header-right">
+      <!-- LOGOUT ICON BUTTON -->
+      <button id="logoutBtn" class="logout-icon ripple">
+        <img src="assets/icons/logout.png">
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- TABS -->
+    <div class="tabs">
+      <div class="tab ripple" data-tab="profile">Profile</div>
+      <div class="tab ripple" data-tab="request">Request</div>
+      <div class="tab ripple" data-tab="history">Request History</div>
+    </div>
+
+    <!-- PROFILE TAB -->
+    <div id="profile" class="section active">
+
+      <div class="profile-card">
+
+        <div class="profile-top">
+          <div class="avatar" id="avatarBox"></div>
+
+          <div class="profile-name">
+            <h3 id="profName">Loading...</h3>
+            <p id="profEmail" class="email">Loading...</p>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="profile-info">
+          <p><strong>Phone:</strong> <span id="profPhone">Loading...</span></p>
+          <p><strong>Address:</strong> <span id="profAddress">Loading...</span></p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- REQUEST TAB -->
+    <div id="request" class="section">
+      <div class="card">
+        <h3>Document Request</h3>
+        <p>You may request barangay documents online.</p>
+        <button class="action-btn" onclick="window.location.href='request.html'">
+          Create Request
+        </button>
+
+      </div>
+    </div>
+
+    <!-- HISTORY TAB -->
+    <div id="history" class="section">
+      <div class="history-container">
+        <div class="history-header">
+          <h3>Your Request History</h3>
+          <p>View your submitted barangay document requests</p>
+        </div>
+
+
+
+        <div id="historyContent" class="history-content" style="display: none;">
+          <div id="requestsList" class="requests-list">
+            <!-- Requests will be populated here -->
+          </div>
+
+          <div id="noRequests" class="no-requests" style="display: none;">
+            <div class="no-requests-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+              </svg>
+            </div>
+            <h4>No Requests Found</h4>
+            <p>You haven't submitted any document requests yet.</p>
+            <button class="action-btn" onclick="switchToRequestTab()">Create Your First Request</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- UNDER CONSTRUCTION MODAL -->
+  <div id="ucModal">
+    <div class="box">
+      <h3>Under Construction</h3>
+      <p>This feature is not yet available.</p>
+      <button onclick="closeUC()">Close</button>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+
+  <script src="assets/js/firebase-config.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/home.js"></script>
+
+  <script>
+    // Logout
+    document.getElementById("logoutBtn").onclick = () => {
+      firebase.auth().signOut().then(() => {
+        window.location.href = "index.html";
+      });
+    };
+
+
+  </script>
+
+</body>
+
+</html>

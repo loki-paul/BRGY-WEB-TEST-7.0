@@ -1,0 +1,82 @@
+<!-- signup.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup | Barangay 186</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- GLOBAL MODAL  -->
+    <div id="globalModal" class="modal-overlay">
+        <div class="modal-box">
+            <h2 id="modalTitle"></h2>
+            <p id="modalMessage"></p>
+            <button id="modalCloseBtn">OK</button>
+            <button id="modalConfirmBtn" style="display: none;">Confirm</button>
+            <button id="modalCancelBtn" style="display: none;">Cancel</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="right">
+            <h1>Barangay 186<br>Management System</h1>
+
+        </div>
+
+        <div class="left">
+            <h2>Create Account</h2>
+
+            <form id="createUserForm">
+
+                <label>First Name</label>
+                <input type="text" id="firstName" required placeholder="Enter first name">
+
+                <label>Middle Name</label>
+                <input type="text" id="middleName" placeholder="Enter middle name">
+
+                <label>Last Name</label>
+                <input type="text" id="lastName" required placeholder="Enter last name">
+
+                <label>Birthday</label>
+                <input type="date" id="birthday" required>
+
+                <label>Email</label>
+                <input type="email" id="email" required placeholder="Enter email address">
+
+                <button type="submit">Create Account</button>
+
+                <p>Already have an account?
+                    <a href="index.html">Sign In</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase Core -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script> <!-- ⭐ REQUIRED -->
+
+
+    <script src="assets/js/page-transition.js"></script>
+
+    <script src="assets/js/modal.js"></script>
+    <script src="assets/js/firebase-config.js"></script>
+    <script src="assets/js/signup.js"></script>
+
+</body>
+
+</html>

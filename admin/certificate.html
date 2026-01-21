@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay 186 Certificate</title>
+    <style>
+        @media print {
+            body { margin: 0; }
+            .no-print { display: none; }
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 20px;
+            background: white;
+        }
+
+        .certificate-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border: 3px solid #8B4513;
+            background: white;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #8B4513;
+            margin: 10px 0;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .content {
+            text-align: justify;
+            line-height: 1.6;
+            margin: 30px 0;
+            font-size: 16px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        .details {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #8B4513;
+        }
+
+        .detail-row {
+            margin: 8px 0;
+        }
+
+        .label {
+            font-weight: bold;
+            display: inline-block;
+            width: 150px;
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding: 0 50px;
+        }
+
+        .signature-block {
+            text-align: center;
+            flex: 1;
+        }
+
+        .signature-line {
+            border-bottom: 1px solid #000;
+            width: 200px;
+            margin: 40px auto 10px;
+        }
+
+        .signature-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .date-issued {
+            text-align: center;
+            margin-top: 30px;
+            font-style: italic;
+        }
+
+        .certificate-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="certificate-number">Certificate No: <span id="cert-number"></span></div>
+
+        <div class="header">
+            <img src="../assets/images/brgy186logo.png" alt="Barangay 186 Logo" class="logo">
+            <div class="title">Republic of the Philippines</div>
+            <div class="title">City of Caloocan</div>
+            <div class="title">Barangay 186</div>
+            <div class="subtitle">Office of the Barangay Captain</div>
+        </div>
+
+        <div class="content">
+            <p>This is to certify that <span class="highlight" id="user-name"></span>, a resident of Barangay 186, Caloocan City, has requested the following documents:</p>
+
+            <div class="details">
+                <div class="detail-row">
+                    <span class="label">Documents:</span>
+                    <span id="documents"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Purpose(s):</span>
+                    <span id="purposes"></span>
+                </div>
+                <div class="detail-row" id="business-info" style="display: none;">
+                    <span class="label">Business Name:</span>
+                    <span id="business-name"></span>
+                </div>
+                <div class="detail-row" id="business-address" style="display: none;">
+                    <span class="label">Business Address:</span>
+                    <span id="business-address"></span>
+                </div>
+                <div class="detail-row" id="business-owner" style="display: none;">
+                    <span class="label">Owner Name:</span>
+                    <span id="business-owner-name"></span>
+                </div>
+                <div class="detail-row" id="notes-row" style="display: none;">
+                    <span class="label">Notes:</span>
+                    <span id="notes"></span>
+                </div>
+            </div>
+
+            <p>This certificate is issued upon the completion of the document request process and serves as official acknowledgment of the transaction.</p>
+        </div>
+
+        <div class="date-issued">
+            Issued on <span id="issue-date"></span>
+        </div>
+
+        <div class="signatures">
+            <div class="signature-block">
+                <div class="signature-line"></div>
+                <div class="signature-title">Barangay Captain</div>
+                <div style="font-size: 12px; margin-top: 5px;">[Signature Over Printed Name]</div>
+            </div>
+
+            <div class="signature-block">
+                <div class="signature-line"></div>
+                <div class="signature-title">Barangay Secretary</div>
+                <div style="font-size: 12px; margin-top: 5px;">[Signature Over Printed Name]</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p style="font-size: 12px; color: #666; margin-top: 20px;">
+                This certificate is computer-generated and valid without signature.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Function to populate certificate data
+        function populateCertificate(data) {
+            document.getElementById('cert-number').textContent = data.requestId.substring(0, 8).toUpperCase();
+            document.getElementById('user-name').textContent = data.userName;
+            document.getElementById('documents').textContent = data.documents.join(', ');
+            document.getElementById('purposes').textContent = Object.entries(data.purposes).map(([key, value]) => `${key}: ${value}`).join('; ');
+            document.getElementById('issue-date').textContent = new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            if (data.businessInfo) {
+                document.getElementById('business-info').style.display = 'block';
+                document.getElementById('business-name').textContent = data.businessInfo.businessName;
+                document.getElementById('business-address').style.display = 'block';
+                document.getElementById('business-address').textContent = data.businessInfo.businessAddress;
+                document.getElementById('business-owner').style.display = 'block';
+                document.getElementById('business-owner-name').textContent = data.businessInfo.ownerName;
+            }
+
+            if (data.notes) {
+                document.getElementById('notes-row').style.display = 'block';
+                document.getElementById('notes').textContent = data.notes;
+            }
+        }
+
+        // Auto-print when loaded
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                window.print();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

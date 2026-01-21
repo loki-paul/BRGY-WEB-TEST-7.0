@@ -1,0 +1,366 @@
+<!-- request.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request Document | Barangay 186</title>
+
+  <link rel="stylesheet" href="assets/css/request.css" />
+  <link rel="stylesheet" href="assets/css/home.css" />
+  <link rel="stylesheet" href="assets/css/modal.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- =======================
+     GLOBAL LOADING OVERLAY
+     ======================= -->
+  <div id="pageLoader">
+    <span class="loader"></span>
+  </div>
+
+  <!-- GLOBAL MODAL -->
+  <div id="globalModal" class="modal-overlay">
+    <div class="modal-box">
+      <h2 id="modalTitle"></h2>
+      <p id="modalMessage"></p>
+      <button id="modalCloseBtn">OK</button>
+      <button id="modalConfirmBtn" style="display: none;">Confirm</button>
+      <button id="modalCancelBtn" style="display: none;">Cancel</button>
+    </div>
+  </div>
+
+  <header class="header">
+
+    <div class="header-left">
+      <img src="assets/images/brgy186logo.png" class="header-logo" alt="Barangay 186 Logo">
+      <h2 class="logo-text">Barangay 186</h2>
+    </div>
+    <div class="header-right">
+      <!-- LOGOUT ICON BUTTON -->
+      <button id="logoutBtn" class="logout-icon ripple">
+        <img src="assets/icons/logout.png">
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- REQUEST FORM CARD -->
+    <div class="request-card">
+      <div class="card-header">
+        <div class="icon-container">
+          <svg class="header-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+          </svg>
+        </div>
+        <div class="header-text">
+          <h2>Document Request</h2>
+          <p>Submit your barangay document request online</p>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-step active" data-step="1">
+          <span class="step-number">1</span>
+          <span class="step-label">Select Document</span>
+        </div>
+        <div class="progress-step" data-step="2">
+          <span class="step-number">2</span>
+          <span class="step-label">Provide Details</span>
+        </div>
+        <div class="progress-step" data-step="3">
+          <span class="step-number">3</span>
+          <span class="step-label">Submit</span>
+        </div>
+      </div>
+
+      <form id="requestForm" class="request-form">
+        <div class="form-section active" data-section="1">
+          <h3 class="section-title">Choose Documents</h3>
+          <p class="section-subtitle">Select one or more documents you need</p>
+
+          <div class="document-grid">
+            <div class="document-option" data-value="Barangay ID">
+              <div class="doc-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V8H13V6H11M11,10V18H13V10H11Z" />
+                </svg>
+              </div>
+              <div class="doc-info">
+                <h4>Barangay ID</h4>
+                <p>Official barangay identification card</p>
+              </div>
+              <div class="doc-radio">
+                <input type="checkbox" name="documents" value="Barangay ID">
+              </div>
+            </div>
+
+            <div class="document-option" data-value="Solo Parent Certification">
+              <div class="doc-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V8H13V6H11M11,10V18H13V10H11Z" />
+                </svg>
+              </div>
+              <div class="doc-info">
+                <h4>Solo Parent Certification</h4>
+                <p>Certification for solo parents</p>
+              </div>
+              <div class="doc-radio">
+                <input type="checkbox" name="documents" value="Solo Parent Certification">
+              </div>
+            </div>
+
+            <div class="document-option" data-value="Business Permit">
+              <div class="doc-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V8H13V6H11M11,10V18H13V10H11Z" />
+                </svg>
+              </div>
+              <div class="doc-info">
+                <h4>Business Permit</h4>
+                <p>For business registration and operations</p>
+              </div>
+              <div class="doc-radio">
+                <input type="checkbox" name="documents" value="Business Permit">
+              </div>
+            </div>
+
+            <div class="document-option" data-value="Business Clearance">
+              <div class="doc-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V8H13V6H11M11,10V18H13V10H11Z" />
+                </svg>
+              </div>
+              <div class="doc-info">
+                <h4>Business Clearance</h4>
+                <p>Clearance for business operations</p>
+              </div>
+              <div class="doc-radio">
+                <input type="checkbox" name="documents" value="Business Clearance">
+              </div>
+            </div>
+
+            <div class="document-option" data-value="Barangay Clearance">
+              <div class="doc-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V8H13V6H11M11,10V18H13V10H11Z" />
+                </svg>
+              </div>
+              <div class="doc-info">
+                <h4>Barangay Clearance</h4>
+                <p>Official barangay clearance certificate</p>
+              </div>
+              <div class="doc-radio">
+                <input type="checkbox" name="documents" value="Barangay Clearance">
+              </div>
+            </div>
+
+            <div class="document-option" data-value="Barangay Residency">
+              <div class="doc-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V8H13V6H11M11,10V18H13V10H11Z" />
+                </svg>
+              </div>
+              <div class="doc-info">
+                <h4>Barangay Residency</h4>
+                <p>Certificate of barangay residency</p>
+              </div>
+              <div class="doc-radio">
+                <input type="checkbox" name="documents" value="Barangay Residency">
+              </div>
+            </div>
+
+            <div class="document-option" data-value="Barangay Indigency">
+              <div class="doc-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V8H13V6H11M11,10V18H13V10H11Z" />
+                </svg>
+              </div>
+              <div class="doc-info">
+                <h4>Barangay Indigency</h4>
+                <p>Certificate of barangay indigency</p>
+              </div>
+              <div class="doc-radio">
+                <input type="checkbox" name="documents" value="Barangay Indigency">
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="form-navigation">
+            <button type="button" id="stepBackBtn" class="btn-prev secondary-btn">Back</button>
+            <button type="button" class="btn-next action-btn">Next</button>
+          </div>
+        </div>
+
+        <div class="form-section" data-section="2">
+          <h3 class="section-title">Provide Request Details</h3>
+          <p class="section-subtitle">Tell us more about your request</p>
+
+
+
+          <div id="purposeGroups">
+            <!-- Purpose for Barangay Clearance -->
+            <div class="form-group purpose-group" id="purposeGroupClearance" style="display: none;">
+              <label for="purposeClearance">Purpose for Barangay Clearance</label>
+              <select id="purposeClearance" name="purposeClearance">
+                <option value="">Select Purpose</option>
+              </select>
+              <input type="text" id="customPurposeClearance" name="customPurposeClearance" placeholder="Specify purpose..." style="display: none; margin-top: 0.5rem;">
+            </div>
+
+            <!-- Purpose for Barangay Residency -->
+            <div class="form-group purpose-group" id="purposeGroupResidency" style="display: none;">
+              <label for="purposeResidency">Purpose for Barangay Residency</label>
+              <select id="purposeResidency" name="purposeResidency">
+                <option value="">Select Purpose</option>
+              </select>
+              <input type="text" id="customPurposeResidency" name="customPurposeResidency" placeholder="Specify purpose..." style="display: none; margin-top: 0.5rem;">
+            </div>
+
+            <!-- Purpose for Barangay Indigency -->
+            <div class="form-group purpose-group" id="purposeGroupIndigency" style="display: none;">
+              <label for="purposeIndigency">Purpose for Barangay Indigency</label>
+              <select id="purposeIndigency" name="purposeIndigency">
+                <option value="">Select Purpose</option>
+              </select>
+              <input type="text" id="customPurposeIndigency" name="customPurposeIndigency" placeholder="Specify purpose..." style="display: none; margin-top: 0.5rem;">
+            </div>
+
+            <!-- Purpose for Business Documents -->
+            <div class="form-group purpose-group" id="purposeGroupBusiness" style="display: none;">
+              <label for="purposeBusiness">Purpose for Business Documents</label>
+              <select id="purposeBusiness" name="purposeBusiness">
+                <option value="">Select Purpose</option>
+              </select>
+              <input type="text" id="customPurposeBusiness" name="customPurposeBusiness" placeholder="Specify purpose..." style="display: none; margin-top: 0.5rem;">
+            </div>
+
+            <!-- General Purpose for other documents -->
+            <div class="form-group purpose-group" id="purposeGroupGeneral" style="display: none;">
+              <label for="purposeGeneral">Purpose</label>
+              <select id="purposeGeneral" name="purposeGeneral">
+                <option value="">Select Purpose</option>
+              </select>
+              <input type="text" id="customPurposeGeneral" name="customPurposeGeneral" placeholder="Specify purpose..." style="display: none; margin-top: 0.5rem;">
+            </div>
+          </div>
+
+          <div id="businessFields" class="business-fields" style="display: none;">
+            <h4>Business Information</h4>
+            <div class="form-group">
+              <label for="businessName">Business Name:</label>
+              <input type="text" id="businessName" name="businessName" placeholder="Enter business name">
+            </div>
+            <div class="form-group">
+              <label for="businessAddress">Business Address:</label>
+              <input type="text" id="businessAddress" name="businessAddress" placeholder="Enter business address">
+            </div>
+            <div class="form-group">
+              <label for="ownerName">Owner's Name:</label>
+              <input type="text" id="ownerName" name="ownerName" placeholder="Enter owner's name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Additional Information (Optional)</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V8H13V6H11M11,10V18H13V10H11Z" />
+              </svg>
+              <textarea id="notes" name="notes" placeholder="Any additional information or special instructions..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-navigation">
+            <button type="button" class="btn-prev secondary-btn">Previous</button>
+            <button type="button" class="btn-next action-btn">Next</button>
+          </div>
+        </div>
+
+        <div class="form-section" data-section="3">
+          <h3 class="section-title">Review & Submit</h3>
+          <p class="section-subtitle">Please review your information before submitting</p>
+
+          <div class="review-section">
+            <div class="review-item">
+              <span class="review-label">Selected Documents:</span>
+              <span class="review-value" id="review-doc-type">-</span>
+            </div>
+            <div class="review-item">
+              <span class="review-label">Purpose:</span>
+              <span class="review-value" id="review-purpose">-</span>
+            </div>
+            <div class="review-item">
+              <span class="review-label">Additional Notes:</span>
+              <span class="review-value" id="review-notes">-</span>
+            </div>
+          </div>
+
+          <div class="submit-notice">
+            <div class="notice-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+              </svg>
+            </div>
+            <div class="notice-text">
+              <p><strong>Important:</strong> Please ensure all information is accurate. You will receive a confirmation once your request is processed.</p>
+            </div>
+          </div>
+
+          <div class="form-navigation">
+            <button type="button" class="btn-prev secondary-btn">Previous</button>
+            <button type="button" id="previewBtn" class="btn-preview secondary-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" />
+              </svg>
+              Preview Certificates
+            </button>
+            <button type="submit" class="btn-submit action-btn">
+              <svg class="submit-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
+              </svg>
+              Submit Request
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+
+  <script src="assets/js/firebase-config.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/submit.js"></script>
+  <script src="assets/js/request.js"></script>
+
+  <script>
+    // Logout
+    document.getElementById("logoutBtn").onclick = () => {
+      firebase.auth().signOut().then(() => {
+        window.location.href = "index.html";
+      });
+    };
+  </script>
+
+</body>
+
+</html>

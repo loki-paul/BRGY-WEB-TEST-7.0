@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Signup</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+  <!-- Loading Overlay -->
+  <div id="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal">
+    <div class="box">
+      <h3 id="modalTitle"></h3>
+      <p id="modalMessage"></p>
+      <button class="btn" id="modalBtn">OK</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="left">
+      <h2 id="status">Verifying your email...</h2>
+
+      <form id="completeForm" style="display:none;">
+        <input type="text" id="username" placeholder="Choose Username" required>
+        <input type="password" id="password" placeholder="Create Password" required>
+        <button type="submit">Finish Registration</button>
+      </form>
+    </div>
+
+    <div class="right"></div>
+  </div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+<!-- REQUIRED FOR REALTIME DATABASE -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/verifyOtp.js"></script>
+
+</body>
+</html>

@@ -21,7 +21,7 @@ document.getElementById("resetForm").addEventListener("submit", async (e) => {
             });
 
         alert("Password updated!");
-        window.location.href = "complete-form.html";
+        window.location.href = "/pages/complete-form.html";
 
     } catch (error) {
         alert(error.message);

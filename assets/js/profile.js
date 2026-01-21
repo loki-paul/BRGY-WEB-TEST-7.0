@@ -283,7 +283,7 @@
         });
 
       showAlert("Profile submitted successfully!");
-      setTimeout(() => location.href = "home.html", 800);
+      setTimeout(() => location.href = "/pages/home.html", 800);
 
     } catch (err) {
       showAlert("Submit error: " + err.message);

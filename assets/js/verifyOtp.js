@@ -89,7 +89,7 @@ window.addEventListener("load", async () => {
 
                 showLoading(false);
                 showModal("Success!", "Your account has been created.", () => {
-                    window.location.href = "index.html";
+                    window.location.href = "/index.html";
                 });
             });
 

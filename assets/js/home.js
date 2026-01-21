@@ -36,14 +36,14 @@ const sessionUID = sessionStorage.getItem("uid");
 
 if (!sessionUID) {
   alert("Your session expired. Please login again.");
-  window.location.href = "index.html";
+  window.location.href = "/index.html";
 }
 
 // Firebase Auth Watcher
 firebase.auth().onAuthStateChanged(async (user) => {
   if (!user) {
     sessionStorage.clear();
-    window.location.href = "index.html";
+    window.location.href = "/index.html";
     return;
   }
 
@@ -152,7 +152,7 @@ window.addEventListener("scroll", () => {
 document.getElementById("logoutBtn")?.addEventListener("click", () => {
   sessionStorage.clear();
   firebase.auth().signOut().then(() => {
-    window.location.href = "index.html";
+    window.location.href = "/index.html";
   });
 });
 
@@ -177,7 +177,7 @@ async function loadRequestHistory() {
   try {
     const user = firebase.auth().currentUser;
     if (!user) {
-      window.location.href = 'index.html';
+      window.location.href = '/index.html';
       return;
     }
 

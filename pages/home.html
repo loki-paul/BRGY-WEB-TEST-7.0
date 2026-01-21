@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home | Barangay 186</title>
 
-  <link rel="stylesheet" href="../assets/css/home.css" />
-  <link rel="stylesheet" href="../assets/css/modal.css" />
+  <link rel="stylesheet" href="/assets/css/home.css" />
+  <link rel="stylesheet" href="/assets/css/modal.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -83,14 +83,14 @@
   <header class="header">
 
     <div class="header-left">
-      <img src="../assets/images/brgy186logo.png" class="header-logo" alt="Barangay 186 Logo">
+      <img src="/assets/images/brgy186logo.png" class="header-logo" alt="Barangay 186 Logo">
       <h2 class="logo-text">Barangay 186</h2>
     </div>
 
     <div class="header-right">
       <!-- LOGOUT ICON BUTTON -->
       <button id="logoutBtn" class="logout-icon ripple">
-        <img src="../assets/icons/logout.png">
+        <img src="/assets/icons/logout.png">
       </button>
 
     </div>
@@ -193,15 +193,15 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
 
-  <script src="../assets/js/firebase-config.js"></script>
-  <script src="../assets/js/modal.js"></script>
-  <script src="../assets/js/home.js"></script>
+  <script src="/assets/js/firebase-config.js"></script>
+  <script src="/assets/js/modal.js"></script>
+  <script src="/assets/js/home.js"></script>
 
   <script>
     // Logout
     document.getElementById("logoutBtn").onclick = () => {
       firebase.auth().signOut().then(() => {
-        window.location.href = "../index.html";
+        window.location.href = "/index.html";
       });
     };
 

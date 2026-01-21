@@ -21,6 +21,16 @@ app.use(cors({
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
+// Serve static files from root directory (HTML, CSS, JS)
+const path = require("path");
+app.use(express.static(path.join(__dirname, "../../")));
+
+// Serve static files from pages directory
+app.use(express.static(path.join(__dirname, "../../pages")));
+
+// Serve static files from assets directory
+app.use(express.static(path.join(__dirname, "../../assets")));
+
 // Health check endpoint
 app.get("/health", (req, res) => {
   res.json({ status: "OK", message: "Backend is running" });

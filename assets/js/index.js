@@ -46,14 +46,14 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         const userData = snapshot.val();
 
         if (userData.tempPassword === true) {
-            return (window.location.href = "reset-password.html");
+            return (window.location.href = "/pages/reset-password.html");
         }
 
         if (userData.completeInfo === false) {
-            return (window.location.href = "complete-form.html");
+            return (window.location.href = "/pages/complete-form.html");
         }
 
-        window.location.href = "home.html";
+        window.location.href = "/pages/home.html";
 
     } catch (error) {
         handleLoginError(error);

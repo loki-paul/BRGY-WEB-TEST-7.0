@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
       // Redirect after a short delay
       setTimeout(() => {
-        window.location.href = 'home.html';
+        window.location.href = '/pages/home.html';
       }, 2000);
 
     } catch (error) {

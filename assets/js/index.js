@@ -53,7 +53,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
             return (window.location.href = "/pages/complete-form.html");
         }
 
-        window.location.href = "/pages/home.html";
+        window.location.href = "https://loki-paul.github.io/BRGY-WEB-TEST-7.0/pages/home.html";
 
     } catch (error) {
         handleLoginError(error);
